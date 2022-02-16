@@ -60,21 +60,21 @@ const Blog = ({ posts }) => {
               <Grid xs={12} md={6} key={post.id}>
                 <Card>
                   <h3>
-                    <Link href={`/blog/${post.id}`}>
-                      <a>
+                    {/* <Link href={`/blog/${post.id}`}> */}
+                      {/* <a> */}
                         <Text>{title[0].plain_text}</Text>
-                      </a>
-                    </Link>
+                      {/* </a> */}
+                    {/* </Link> */}
                   </h3>
 
                   <p>{date}</p>
-                  <Link
+                  {/* <Link
                     href={`/blog/${slugify(
                       post.properties.Name.title[0].plain_text
                     ).toLowerCase()}`}
                   >
                     <a> Read post →</a>
-                  </Link>
+                  </Link> */}
                 </Card>
               </Grid>
             );
