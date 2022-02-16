@@ -13,7 +13,21 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang="en">
-        <Head>{CssBaseline.flush()}</Head>
+        <Head>
+          {CssBaseline.flush()}
+          <style
+            id="tempStyles"
+            dangerouslySetInnerHTML={{
+              __html: `
+                body {
+                    // TODO: Move this away from here!
+                    // background-color: black !important;
+                    background-image: url('/funky-lines.png') !important;
+                    height: 100vh;
+                `,
+            }}
+          />{' '}
+        </Head>
         <body>
           <Main />
           <NextScript />
