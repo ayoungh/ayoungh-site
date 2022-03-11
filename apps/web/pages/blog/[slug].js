@@ -153,12 +153,15 @@ export const getStaticPaths = async () => {
   const paths = [];
 
   database.forEach((result) => {
-    console.log('result:', result.properties.Name.title[0].plain_text);
-    paths.push({
-      params: {
-        slug: slugify(result.properties.Name.title[0].plain_text).toLowerCase(),
-      },
-    });
+    console.log('>> result:', result.properties.Name.title[0].plain_text, result.properties);
+    if (result.properties.Live.checkbox)
+      paths.push({
+        params: {
+          slug: slugify(
+            result.properties.Name.title[0].plain_text
+          ).toLowerCase(),
+        },
+      });
   });
 
   return {
