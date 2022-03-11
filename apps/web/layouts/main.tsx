@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import { Container, Row, Col } from '@nextui-org/react';
 import { Navigation } from '../components/Navigation';
+import { Footer } from '../components/Footer';
 
 export const MainLayout = ({ children }) => {
   return (
@@ -12,7 +13,7 @@ export const MainLayout = ({ children }) => {
       </Row>
       <Row>{children}</Row>
       <Row justify="center">
-        <footer>2022 - ayoungh.co.uk</footer>
+        <Footer />
       </Row>
     </Container>
   );

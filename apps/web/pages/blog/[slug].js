@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { getDatabase, getPage, getBlocks } from "../libs/notion";
+import { getDatabase, getPage, getBlocks } from "../../libs/notion";
 import Link from "next/link";
-import { databaseId } from "../pages";
-// import styles from "../../styles/Posts.module.css";
-// import MainLayout from "../../layouts/MainLayout";
+import { databaseId } from ".";
 import slugify from "slugify";
+import { Spacer, Button, Grid, Text, Tooltip } from '@nextui-org/react';
+import Image from 'next/image';
 
-export const Text = ({ text }) => {
+export const T = ({ text }) => {
   if (!text) {
     return null;
   }
@@ -17,18 +17,18 @@ export const Text = ({ text }) => {
       text,
     } = value;
     return (
-      <span key={inx}
+      <Text key={inx} b={bold}
         className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
+          bold ? '' : "",
+          code ? '' : "",
+          italic ? '' : "",
+          strikethrough ? '' : "",
+          underline ? '' : "",
         ].join(" ")}
         style={color !== "default" ? { color } : {}}
       >
         {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
+      </Text>
     );
   });
 };
@@ -36,45 +36,47 @@ export const Text = ({ text }) => {
 const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
+  console.log('------')
+  console.log('type: ', type)
+  console.log('block: ', block);
+  const text = value.rich_text;
+  console.log('rich_text::', text)
 
   switch (type) {
     case "paragraph":
       return (
         <p>
-          <Text text={value.text} />
+          <T text={value.text} />
         </p>
       );
     case "heading_1":
+      
       return (
         <h1>
-          <Text text={value.text} />
+          <T text={text} />
         </h1>
       );
     case "heading_2":
       return (
         <h2>
-          <Text text={value.text} />
+          <T text={text} />
         </h2>
       );
     case "heading_3":
       return (
         <h3>
-          <Text text={value.text} />
+          <T text={text} />
         </h3>
       );
     case "bulleted_list_item":
     case "numbered_list_item":
-      return (
-        <li>
-          <Text text={value.text} />
-        </li>
-      );
+        return text.length > 0 && (<li>{text[0].text.content}</li>);
     case "to_do":
       return (
         <div>
           <label htmlFor={id}>
             <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
-            <Text text={value.text} />
+            <T text={value.text} />
           </label>
         </div>
       );
@@ -82,7 +84,7 @@ const renderBlock = (block) => {
       return (
         <details>
           <summary>
-            <Text text={value.text} />
+            <T text={value.text} />
           </summary>
           {value.children?.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -91,6 +93,20 @@ const renderBlock = (block) => {
       );
     case "child_page":
       return <p>{value.title}</p>;
+
+    case "image":
+      return <Image src={value.external.url} layout='fill'/>;
+      return <p>Image here: {JSON.stringify(value,2, null)}</p>;
+
+    case "divider":
+      return <hr />;  
+
+    case "quote":
+      return <Text blockquote>{value.text[0].text.content} </Text>;
+      // {
+      //   JSON.stringify(value, 2, null);
+      // }
+
     default:
       return `❌ Unsupported block (${
         type === "unsupported" ? "unsupported by Notion API" : type
@@ -111,8 +127,8 @@ export default function Post({ page, blocks }) {
       </Head>
 
       {/* <MainLayout> */}
-        <article className={styles.container}>
-          <h1 className={styles.name}>
+        <article>
+          <h1>
             <Text text={page.properties.Name.title} />
           </h1>
           <section>
@@ -120,7 +136,7 @@ export default function Post({ page, blocks }) {
               <Fragment key={block.id}>{renderBlock(block)}</Fragment>
             ))}
             <Link href="/blog">
-              <a className={styles.back}>← Go home</a>
+              <a>← Go home</a>
             </Link>
           </section>
         </article>
@@ -129,18 +145,23 @@ export default function Post({ page, blocks }) {
   );
 }
 
+// export const databaseId = process.env.NOTION_DATABASE_ID;
+
 export const getStaticPaths = async () => {
   const database = await getDatabase(databaseId);
 
   const paths = [];
 
   database.forEach((result) => {
-    console.log('result:', result.properties.Name.title[0].plain_text);
-    paths.push({
-      params: {
-        slug: slugify(result.properties.Name.title[0].plain_text).toLowerCase(),
-      },
-    });
+    console.log('>> result:', result.properties.Name.title[0].plain_text, result.properties);
+    if (result.properties.Live.checkbox)
+      paths.push({
+        params: {
+          slug: slugify(
+            result.properties.Name.title[0].plain_text
+          ).toLowerCase(),
+        },
+      });
   });
 
   return {

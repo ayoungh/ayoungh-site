@@ -1,4 +1,3 @@
-
 import Head from 'next/head';
 import { getDatabase } from '../../libs/notion';
 import {
@@ -9,13 +8,13 @@ import {
   Text,
   Card,
   Row,
-  Col
+  Col,
 } from '@nextui-org/react';
 import Link from 'next/link';
 import slugify from 'slugify';
 
 const Blog = ({ posts }) => {
-  console.log(posts);
+  console.log('posts: ', posts);
   return (
     <>
       <Head>
@@ -52,63 +51,58 @@ const Blog = ({ posts }) => {
               properties: {
                 Name: { title },
                 Created: { created_time },
+                Live: { checkbox: isLive}
               },
-              cover
+              cover,
             } = post;
-            console.log('>>', cover, '<<');
+            console.log('>>', cover, isLive, '<<');
 
-            return (
+            return isLive && (
               <Grid xs={12} sm={6} key={post.id}>
                 <Card cover={Boolean(cover)} animated hoverable clickable>
-                  <Card.Body css={{ p: 0, minHeight: "160px" }}>
-                    {cover && cover.external ? (
-                      <Card.Image
-                        src={cover.external.url}
-                        height={340}
-                        width="100%"
-                        alt="Card image background"
-                      />
-                    ) : null}
-                    {/* <h3> */}
-                    {/* <Link href={`/blog/${post.id}`}> */}
-                    {/* <a> */}
-
-                    {/* </a> */}
-                    {/* </Link> */}
-                    {/* </h3> */}
-
-                    {/* <Link
-                    href={`/blog/${slugify(
-                      post.properties.Name.title[0].plain_text
-                    ).toLowerCase()}`}
-                  >
-                    <a> Read post →</a>
-                  </Link> */}
-
-                    <Card.Footer
-                      blur
-                      css={{
-                        position: 'absolute',
-                        bgBlur: '#0f1114',
-                        bottom: 0,
-                        zIndex: 1,
-                      }}
+                  <Card.Body css={{ p: 0, minHeight: '160px' }}>
+                    <Link
+                      href={`/blog/${slugify(
+                        post.properties.Name.title[0].plain_text
+                      ).toLowerCase()}`}
                     >
-                      <Row>
-                        <Col>
+                      <a>
+                        {cover && cover.external ? (
+                          <Card.Image
+                            src={cover.external.url}
+                            height={340}
+                            width="100%"
+                            alt="Card image background"
+                          />
+                        ) : null}
+
+                        <Card.Footer
+                          blur
+                          css={{
+                            position: 'absolute',
+                            bgBlur: '#0f1114',
+                            bottom: 0,
+                            zIndex: 1,
+                          }}
+                        >
                           <Row>
                             <Col>
-                              <Text color="#d1d1d1" size={16}>
-                                {title[0].plain_text}
-                              </Text>
-                              <Text color="#d1d1d1" size={12}>
-                                {date}
-                              </Text>
+                              <Row>
+                                <Col>
+                                  <Text color="#d1d1d1" size={16}>
+                                    {title[0].plain_text}
+                                  </Text>
+                                  <Text color="#d1d1d1" size={12}>
+                                    {date}
+                                  </Text>
+                                  Read post →
+                                </Col>
+                              </Row>
                             </Col>
                           </Row>
-                        </Col>
-                      </Row>
-                    </Card.Footer>
+                        </Card.Footer>
+                      </a>
+                    </Link>
                   </Card.Body>
                 </Card>
               </Grid>
