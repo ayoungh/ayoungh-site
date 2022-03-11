@@ -14,7 +14,7 @@ import Link from 'next/link';
 import slugify from 'slugify';
 
 const Blog = ({ posts }) => {
-  console.log(posts);
+  console.log('posts: ', posts);
   return (
     <>
       <Head>
@@ -51,12 +51,13 @@ const Blog = ({ posts }) => {
               properties: {
                 Name: { title },
                 Created: { created_time },
+                Live: { checkbox: isLive}
               },
               cover,
             } = post;
-            console.log('>>', cover, '<<');
+            console.log('>>', cover, isLive, '<<');
 
-            return (
+            return isLive && (
               <Grid xs={12} sm={6} key={post.id}>
                 <Card cover={Boolean(cover)} animated hoverable clickable>
                   <Card.Body css={{ p: 0, minHeight: '160px' }}>
