@@ -36,8 +36,11 @@ export const T = ({ text }) => {
 const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
-
+  console.log('------')
   console.log('type: ', type)
+  console.log('block: ', block);
+  const text = value.rich_text;
+  console.log('rich_text::', text)
 
   switch (type) {
     case "paragraph":
@@ -47,30 +50,27 @@ const renderBlock = (block) => {
         </p>
       );
     case "heading_1":
+      
       return (
         <h1>
-          <T text={value.text} />
+          <T text={text} />
         </h1>
       );
     case "heading_2":
       return (
         <h2>
-          <T text={value.text} />
+          <T text={text} />
         </h2>
       );
     case "heading_3":
       return (
         <h3>
-          <T text={value.text} />
+          <T text={text} />
         </h3>
       );
     case "bulleted_list_item":
     case "numbered_list_item":
-      return (
-        <li>
-          <T text={value.text} />
-        </li>
-      );
+        return text.length > 0 && (<li>{text[0].text.content}</li>);
     case "to_do":
       return (
         <div>
