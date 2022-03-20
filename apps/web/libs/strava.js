@@ -1,5 +1,3 @@
-import querystring from 'querystring';
-
 const client_id = process.env.STRAVA_CLIENT_ID;
 const client_secret = process.env.STRAVA_CLIENT_SECRET;
 const refresh_token = process.env.STRAVA_REFRESH_TOKEN;
@@ -12,7 +10,7 @@ export const getAccessToken = async () => {
       Accept: 'application/json, text/plain, */*',
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: querystring.stringify({
+    body: new URLSearchParams({
       client_id,
       client_secret,
       refresh_token,
