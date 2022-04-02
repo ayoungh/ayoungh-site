@@ -23,7 +23,7 @@ class MyDocument extends Document {
                     // TODO: Move this away from here!
                     // background-color: black !important;
                     background-image: url('/funky-lines.png') !important;
-                    height: 100vh;
+                    min-height: 100vh;
                 `,
             }}
           />{' '}
