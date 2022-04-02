@@ -10,25 +10,26 @@ export const Navigation = () => {
       tip: 'What is happening Now',
     },
     {
-      to: '/about',
-      name: 'About',
-      tip: 'About me',
-    },
-    {
       to: '/blog',
       name: 'Blog',
       tip: 'My blog Posts',
     },
     {
-      to: '/til',
-      name: 'TIL',
-      tip: 'Today I Learnt',
+      to: '/about',
+      name: 'About',
+      tip: 'About me',
     },
-    {
-      to: '/books',
-      name: 'Books',
-      tip: 'Books I have read etc',
-    },
+
+    // {
+    //   to: '/til',
+    //   name: 'TIL',
+    //   tip: 'Today I Learnt',
+    // },
+    // {
+    //   to: '/books',
+    //   name: 'Books',
+    //   tip: 'Books I have read etc',
+    // },
   ];
 
 
