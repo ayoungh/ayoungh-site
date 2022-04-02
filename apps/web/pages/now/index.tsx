@@ -1,8 +1,12 @@
-import { Text, Spacer } from '@nextui-org/react';
+import { Text, Spacer, Container } from '@nextui-org/react';
 
 export default function Now() {
   return (
-    <div>
+    <Container
+      css={{
+        minHeight: 'calc(100vh - 140px)',
+      }}
+    >
       <Text
         h2
         size={25}
@@ -17,6 +21,6 @@ export default function Now() {
       <Spacer y={3} />
       <Text>Currently working full time as a Software engineer.</Text>
       <Spacer y={3} />
-    </div>
+    </Container>
   );
 }

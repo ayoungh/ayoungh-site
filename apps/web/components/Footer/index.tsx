@@ -1,11 +1,31 @@
 import React from 'react';
-import { Text, Link, Row } from '@nextui-org/react';
-import Icon from '../SocialIcons';
+import { Text, Link, Row, Col, styled, Spacer } from '@nextui-org/react';
+import Icon from '@components/SocialIcons';
+import { Activities } from '@components/Activities';
+import { Listening } from '@components/Listening';
+
+// @ts-ignore
+const StyledFooter = styled('footer', {
+  width: '100%',
+});
 
 export const Footer = () => {
   return (
-    <footer>
+    <StyledFooter>
       <Row>
+        <Col>
+          <Row justify="center">
+            <Listening />
+          </Row>
+        </Col>
+        <Col>
+          <Row justify="center">
+            <Activities />
+          </Row>
+        </Col>
+      </Row>
+      <Spacer x={2} />
+      <Row justify="center">
         <Link
           href="https://www.instagram.com/ayoungh/"
           target="_blank"
@@ -77,12 +97,12 @@ export const Footer = () => {
           <Icon fgColor="#de3a3a" networkKey="youtube" />
         </Link>
       </Row>
-      <Row>
+      <Row justify="center">
         <Text small>
           &copy; Copyright. Anthony Young - {new Date().getFullYear()} -
           ayoungh.co.uk
         </Text>
       </Row>
-    </footer>
+    </StyledFooter>
   );
 };
