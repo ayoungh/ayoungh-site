@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { getTopTracks } from '../../libs/spotify';
+import { getTopTracks } from '@libs/spotify';
 
 export default async function handler(
   req: NextApiRequest,

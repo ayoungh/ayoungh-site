@@ -21,7 +21,7 @@ const IconContainer = styled('div', {
 });
 
 export const Listening = () => {
-  const { data } = useSWR<listening>('/api/now-playing', fetcher);
+  const { data } = useSWR<listening>('/api/spotify/now-playing', fetcher);
 
   if (data?.isPlaying)
     return (

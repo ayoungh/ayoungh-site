@@ -11,7 +11,8 @@ type activity = {
 };
 
 export const Activities = () => {
-  const { data } = useSWR<activity[]>('/api/strava-activity', fetcher);
+  const { data } = useSWR<activity[]>('/api/strava/activity', fetcher);
+  const { data: ouraData } = useSWR<activity[]>('/api/oura/daily', fetcher);
 
   return (
     <div>
