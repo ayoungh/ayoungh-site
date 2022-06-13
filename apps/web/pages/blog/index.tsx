@@ -64,7 +64,7 @@ const Blog = ({ posts }) => {
             return (
               isLive && (
                 <Grid xs={12} sm={6} key={post.id}>
-                  <Card cover={Boolean(cover)} animated hoverable clickable>
+                  <Card isPressable>
                     <Card.Body css={{ p: 0, minHeight: '160px' }}>
                       <Link
                         href={`/blog/${slugify(
@@ -78,11 +78,12 @@ const Blog = ({ posts }) => {
                               height={340}
                               width="100%"
                               alt="Card image background"
+                              objectFit="cover"
                             />
                           ) : null}
 
                           <Card.Footer
-                            blur
+                            isBlurred
                             css={{
                               position: 'absolute',
                               bgBlur: '#0f1114',
