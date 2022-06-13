@@ -22,7 +22,11 @@ const Blog = ({ posts }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Container>
+      <Container
+        css={{
+          minHeight: 'calc(100vh - 140px)',
+        }}
+      >
         <Text
           h2
           size={25}
@@ -51,61 +55,63 @@ const Blog = ({ posts }) => {
               properties: {
                 Name: { title },
                 Created: { created_time },
-                Live: { checkbox: isLive}
+                Live: { checkbox: isLive },
               },
               cover,
             } = post;
             console.log('>>', cover, isLive, '<<');
 
-            return isLive && (
-              <Grid xs={12} sm={6} key={post.id}>
-                <Card cover={Boolean(cover)} animated hoverable clickable>
-                  <Card.Body css={{ p: 0, minHeight: '160px' }}>
-                    <Link
-                      href={`/blog/${slugify(
-                        post.properties.Name.title[0].plain_text
-                      ).toLowerCase()}`}
-                    >
-                      <a>
-                        {cover && cover.external ? (
-                          <Card.Image
-                            src={cover.external.url}
-                            height={340}
-                            width="100%"
-                            alt="Card image background"
-                          />
-                        ) : null}
+            return (
+              isLive && (
+                <Grid xs={12} sm={6} key={post.id}>
+                  <Card cover={Boolean(cover)} animated hoverable clickable>
+                    <Card.Body css={{ p: 0, minHeight: '160px' }}>
+                      <Link
+                        href={`/blog/${slugify(
+                          post.properties.Name.title[0].plain_text
+                        ).toLowerCase()}`}
+                      >
+                        <a>
+                          {cover && cover.external ? (
+                            <Card.Image
+                              src={cover.external.url}
+                              height={340}
+                              width="100%"
+                              alt="Card image background"
+                            />
+                          ) : null}
 
-                        <Card.Footer
-                          blur
-                          css={{
-                            position: 'absolute',
-                            bgBlur: '#0f1114',
-                            bottom: 0,
-                            zIndex: 1,
-                          }}
-                        >
-                          <Row>
-                            <Col>
-                              <Row>
-                                <Col>
-                                  <Text color="#d1d1d1" size={16}>
-                                    {title[0].plain_text}
-                                  </Text>
-                                  <Text color="#d1d1d1" size={12}>
-                                    {date}
-                                  </Text>
-                                  Read post →
-                                </Col>
-                              </Row>
-                            </Col>
-                          </Row>
-                        </Card.Footer>
-                      </a>
-                    </Link>
-                  </Card.Body>
-                </Card>
-              </Grid>
+                          <Card.Footer
+                            blur
+                            css={{
+                              position: 'absolute',
+                              bgBlur: '#0f1114',
+                              bottom: 0,
+                              zIndex: 1,
+                            }}
+                          >
+                            <Row>
+                              <Col>
+                                <Row>
+                                  <Col>
+                                    <Text color="#d1d1d1" size={16}>
+                                      {title[0].plain_text}
+                                    </Text>
+                                    <Text color="#d1d1d1" size={12}>
+                                      {date}
+                                    </Text>
+                                    Read post →
+                                  </Col>
+                                </Row>
+                              </Col>
+                            </Row>
+                          </Card.Footer>
+                        </a>
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </Grid>
+              )
             );
           })}
         </Grid.Container>
