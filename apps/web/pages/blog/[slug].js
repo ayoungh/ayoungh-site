@@ -1,10 +1,10 @@
-import { Fragment } from "react";
-import Head from "next/head";
-import { getDatabase, getPage, getBlocks } from "../../libs/notion";
-import Link from "next/link";
-import { databaseId } from ".";
-import slugify from "slugify";
-import { Spacer, Button, Grid, Text, Tooltip } from '@nextui-org/react';
+import { Fragment } from 'react';
+import Head from 'next/head';
+import { getDatabase, getPage, getBlocks } from '../../libs/notion';
+import Link from 'next/link';
+import { databaseId } from '.';
+import slugify from 'slugify';
+import { Spacer, Button, Grid, Text, Tooltip, Container } from '@nextui-org/react';
 import Image from 'next/image';
 
 export const T = ({ text }) => {
@@ -17,15 +17,17 @@ export const T = ({ text }) => {
       text,
     } = value;
     return (
-      <Text key={inx} b={bold}
+      <Text
+        key={inx}
+        b={bold}
         className={[
-          bold ? '' : "",
-          code ? '' : "",
-          italic ? '' : "",
-          strikethrough ? '' : "",
-          underline ? '' : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
+          bold ? '' : '',
+          code ? '' : '',
+          italic ? '' : '',
+          strikethrough ? '' : '',
+          underline ? '' : '',
+        ].join(' ')}
+        style={color !== 'default' ? { color } : {}}
       >
         {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
       </Text>
@@ -36,51 +38,50 @@ export const T = ({ text }) => {
 const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
-  console.log('------')
-  console.log('type: ', type)
+  console.log('------');
+  console.log('type: ', type);
   console.log('block: ', block);
   const text = value.rich_text;
-  console.log('rich_text::', text)
+  console.log('rich_text::', text);
 
   switch (type) {
-    case "paragraph":
+    case 'paragraph':
       return (
         <p>
           <T text={value.text} />
         </p>
       );
-    case "heading_1":
-      
+    case 'heading_1':
       return (
         <h1>
           <T text={text} />
         </h1>
       );
-    case "heading_2":
+    case 'heading_2':
       return (
         <h2>
           <T text={text} />
         </h2>
       );
-    case "heading_3":
+    case 'heading_3':
       return (
         <h3>
           <T text={text} />
         </h3>
       );
-    case "bulleted_list_item":
-    case "numbered_list_item":
-        return text.length > 0 && (<li>{text[0].text.content}</li>);
-    case "to_do":
+    case 'bulleted_list_item':
+    case 'numbered_list_item':
+      return text.length > 0 && <li>{text[0].text.content}</li>;
+    case 'to_do':
       return (
         <div>
           <label htmlFor={id}>
-            <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
+            <input type="checkbox" id={id} defaultChecked={value.checked} />{' '}
             <T text={value.text} />
           </label>
         </div>
       );
-    case "toggle":
+    case 'toggle':
       return (
         <details>
           <summary>
@@ -91,31 +92,31 @@ const renderBlock = (block) => {
           ))}
         </details>
       );
-    case "child_page":
+    case 'child_page':
       return <p>{value.title}</p>;
 
-    case "image":
-      return <Image src={value.external.url} layout='fill'/>;
-      return <p>Image here: {JSON.stringify(value,2, null)}</p>;
+    case 'image':
+      return <Image src={value.external.url} layout="fill" />;
+      return <p>Image here: {JSON.stringify(value, 2, null)}</p>;
 
-    case "divider":
-      return <hr />;  
+    case 'divider':
+      return <hr />;
 
-    case "quote":
+    case 'quote':
       return <Text blockquote>{value.text[0].text.content} </Text>;
-      // {
-      //   JSON.stringify(value, 2, null);
-      // }
+    // {
+    //   JSON.stringify(value, 2, null);
+    // }
 
     default:
       return `❌ Unsupported block (${
-        type === "unsupported" ? "unsupported by Notion API" : type
+        type === 'unsupported' ? 'unsupported by Notion API' : type
       })`;
   }
 };
 
 export default function Post({ page, blocks }) {
-  console.log(page, blocks)
+  console.log(page, blocks);
   if (!page || !blocks) {
     return <div />;
   }
@@ -126,7 +127,11 @@ export default function Post({ page, blocks }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      {/* <MainLayout> */}
+      <Container
+        css={{
+          minHeight: 'calc(100vh - 140px)',
+        }}
+      >
         <article>
           <h1>
             <Text text={page.properties.Name.title} />
@@ -140,7 +145,7 @@ export default function Post({ page, blocks }) {
             </Link>
           </section>
         </article>
-      {/* </MainLayout> */}
+      </Container>
     </>
   );
 }
@@ -153,7 +158,11 @@ export const getStaticPaths = async () => {
   const paths = [];
 
   database.forEach((result) => {
-    console.log('>> result:', result.properties.Name.title[0].plain_text, result.properties);
+    console.log(
+      '>> result:',
+      result.properties.Name.title[0].plain_text,
+      result.properties
+    );
     if (result.properties.Live.checkbox)
       paths.push({
         params: {
@@ -179,7 +188,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   });
 
   const blocks = await getBlocks(page.id);
-  console.log('blocks: ', blocks)
+  console.log('blocks: ', blocks);
 
   // const blocks = await notion.blocks.children.list({
   //   block_id: page.id,
@@ -188,7 +197,7 @@ export const getStaticProps = async ({ params: { slug } }) => {
   return {
     props: {
       page: page,
-      blocks: blocks
+      blocks: blocks,
     },
   };
 };
