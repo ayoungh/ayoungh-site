@@ -41,7 +41,7 @@ const router = useRouter();
           <Grid.Container gap={2}>
             <Grid>
               <Tooltip content="ayoungh.co.uk" placement="bottom">
-                <Button type="button" color="primary" auto light ripple={true}>
+                <Button type="button" color="error" auto light ripple={true}>
                   <Link href="/">
                     <a>
                       <Text
