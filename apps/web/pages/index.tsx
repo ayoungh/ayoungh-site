@@ -37,7 +37,7 @@ export default function Home() {
 
       <Container
         css={{
-          minHeight: 'calc(100vh - 140px)',
+          minHeight: 'calc(100vh - 240px)',
         }}
       >
         <Spacer y={1} />
