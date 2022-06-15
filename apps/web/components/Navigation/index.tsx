@@ -65,7 +65,7 @@ const router = useRouter();
                   <Tooltip content={link.tip} placement="bottom">
                     <Button
                       type="button"
-                      color="primary"
+                      color="error"
                       auto
                       light
                       ripple={true}
