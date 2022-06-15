@@ -7,6 +7,7 @@ import { Listening } from '@components/Listening';
 // @ts-ignore
 const StyledFooter = styled('footer', {
   width: '100%',
+  padding: '16px 0'
 });
 
 export const Footer = () => {
