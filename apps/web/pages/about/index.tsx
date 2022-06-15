@@ -25,34 +25,34 @@ export default function About() {
             padding: '0 8px 0 0',
           }}
         >
-          I'm Currently working fulltime as a{' '}
-        </Text>
-        <Text
-          size={20}
-          css={{
-            textGradient: '45deg, $blue500 -20%, $red500 100%',
-          }}
-          weight="bold"
-        >
-          {' '}
-          Senior Software Engineer and Frontend Team Lead
-        </Text>
-        <Text
-          size={20}
-          css={{
-            padding: '0 8px',
-          }}
-        >
-at
-        </Text>
-        <Text
-          size={20}
-          css={{
-            textGradient: '45deg, $blue500 -20%, $red500 100%',
-          }}
-          weight="bold"
-        >
-          Cado Security.
+          I'm Currently working fulltime as a
+          <Text
+            size={20}
+            css={{
+              textGradient: '45deg, $blue500 -20%, $red500 100%',
+            }}
+            weight="bold"
+          >
+            {' '}
+            Senior Software Engineer and Frontend Team Lead
+          </Text>
+          <Text
+            size={20}
+            css={{
+              padding: '0 8px',
+            }}
+          >
+            at
+          </Text>
+          <Text
+            size={20}
+            css={{
+              textGradient: '45deg, $blue500 -20%, $red500 100%',
+            }}
+            weight="bold"
+          >
+            Cado Security.
+          </Text>
         </Text>
       </Row>
       <Spacer y={0.2} />
