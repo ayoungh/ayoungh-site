@@ -3,6 +3,8 @@ import useSWR from 'swr';
 import fetcher from '@libs/fetcher';
 import Icon from '@components/SocialIcons';
 import { Text, Card, Row, styled, Container } from '@nextui-org/react';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faMusic } from '@fortawesome/free-solid-svg-icons';
 
 type listening = {
   album?: string;
@@ -12,6 +14,11 @@ type listening = {
   songUrl?: string;
   title?: string;
 };
+
+const StyledFontAwesome = styled('div', {
+  padding: '0 8px',
+  display: 'inline'
+});
 
 // @ts-ignore
 const IconContainer = styled('div', {
@@ -51,5 +58,12 @@ export const Listening = () => {
         </Row>
       </Container>
     );
-  return <div>Not currently listening.</div>;
+  return (
+    <div>
+      <StyledFontAwesome>
+        <FontAwesomeIcon icon={faMusic} />
+      </StyledFontAwesome>
+      Not currently listening.
+    </div>
+  );
 };
