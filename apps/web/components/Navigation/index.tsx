@@ -7,7 +7,7 @@ export const Navigation = () => {
     {
       to: '/now',
       name: 'Now',
-      tip: 'What is happening Now',
+      tip: 'What I\'m Doing Now',
     },
     {
       to: '/blog',
