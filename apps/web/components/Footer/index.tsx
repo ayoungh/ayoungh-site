@@ -98,7 +98,7 @@ export const Footer = () => {
           <Icon fgColor="#de3a3a" networkKey="youtube" />
         </Link>
       </Row>
-      <Row justify="center">
+      <Row justify="center" css={{padding: '10px 0'}}>
         <Text small>
           &copy; Copyright. Anthony Young - {new Date().getFullYear()} -
           ayoungh.co.uk
