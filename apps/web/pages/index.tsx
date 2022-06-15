@@ -41,7 +41,7 @@ export default function Home() {
         }}
       >
         <Spacer y={1} />
-        <Row justify="center">
+        <Row>
           <Text
             h1
             size={60}
@@ -50,13 +50,13 @@ export default function Home() {
             }}
             weight="bold"
           >
-            Hey,
+            Hey 👋,
           </Text>
         </Row>
-        <Row justify="center">
+        <Row>
           <Text
             h1
-            size={60}
+            size={55}
             css={{
               textGradient: '45deg, $blue500 -20%, $red500 100%',
             }}
@@ -65,22 +65,22 @@ export default function Home() {
             I'm a Software Engineer
           </Text>
         </Row>
-        <Row justify="center">
+        <Row>
           <Text
             h1
-            size={60}
+            size={50}
             css={{
               textGradient: '45deg, $blue500 -20%, $red500 100%',
             }}
             weight="bold"
           >
-            Based in London
+            Based in London.
           </Text>
         </Row>
 
         <Spacer y={3} />
 
-        <Row justify="center">
+        <Row>
           <Spacer y={1} />
           <ul>
             <li>This site is Built with NextJS and hosted on Vercel</li>
