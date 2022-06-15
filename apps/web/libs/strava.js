@@ -26,7 +26,7 @@ export const getActivity = async () => {
 
   // Just get the last item?
   return await fetch(
-    'https://www.strava.com/api/v3/athlete/activities?per_page=1',
+    'https://www.strava.com/api/v3/athlete/activities?per_page=3',
     {
       method: 'GET',
       headers: {

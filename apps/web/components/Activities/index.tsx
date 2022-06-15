@@ -4,18 +4,27 @@ import { formatDistance } from 'date-fns';
 import fetcher from '@libs/fetcher';
 import { Text, styled } from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPersonRunning } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPersonRunning,
+  faPersonWalking,
+} from '@fortawesome/free-solid-svg-icons';
 
 
 type activity = {
   name: string;
   start_date: string;
   type: string;
+  id: number;
 };
 
 const StyledFontAwesome = styled('div', {
   padding: '0 8px',
   display: 'inline',
+});
+
+const StyledA = styled('a', {
+  padding: '8px 0',
+  display: 'block',
 });
 
 export const Activities = () => {
@@ -24,19 +33,28 @@ export const Activities = () => {
 
   return (
     <div>
-      <Text b>Last Activity:</Text>
+      <Text b>Lastest Activities:</Text>
       <Text small>
         {data &&
-          data.map(({ type, name, start_date }) => (
-            <div>
+          data.map(({ type, name, start_date, id }) => (
+            <StyledA
+              href={`https://www.strava.com/activities/${id}`}
+              target="_blank"
+              rel="noreferrer"
+            >
               <StyledFontAwesome>
-                <FontAwesomeIcon icon={faPersonRunning} />
+                {type.toLowerCase() === 'run' && (
+                  <FontAwesomeIcon icon={faPersonRunning} />
+                )}
+                {type.toLowerCase() === 'walk' && (
+                  <FontAwesomeIcon icon={faPersonWalking} />
+                )}
               </StyledFontAwesome>
               {type} - {name} -{' '}
               {formatDistance(new Date(start_date), new Date(), {
                 addSuffix: true,
               })}
-            </div>
+            </StyledA>
           ))}
       </Text>
     </div>

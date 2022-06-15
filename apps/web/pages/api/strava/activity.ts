@@ -13,5 +13,5 @@ export default async function handler(
     'public, s-maxage=86400, stale-while-revalidate=43200'
   );
 
-  return res.status(200).json(response.map(({name, start_date, type})=>{return{name, start_date, type}}));
+  return res.status(200).json(response.map((activity)=>{ console.log(activity); const {name, start_date, type, id} = activity;  return{name, start_date, type, id}}));
 }
