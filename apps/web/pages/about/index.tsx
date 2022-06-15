@@ -1,4 +1,4 @@
-import { Text, Spacer, Container, Tooltip, Button, Link } from '@nextui-org/react';
+import { Text, Spacer, Container, Tooltip, Button, Link, Row } from '@nextui-org/react';
 
 export default function About() {
   return (
@@ -8,7 +8,7 @@ export default function About() {
       }}
     >
       <Text
-        h2
+        h1
         size={25}
         css={{
           textGradient: '45deg, $red500 0%, $blue500 30%',
@@ -18,22 +18,58 @@ export default function About() {
         About Me
       </Text>
       <Spacer y={3} />
-      <Text>
-        I'm Currently working fulltime as a Senior Software Engineer and
-        Frontend Team Lead at Cado Security.
-      </Text>
-      <Text>I've been working in the web world for over 10 years. </Text>
-      <Text>
-        I started out doing graphic design and slowly edged into the coding side
-        after building interactive projects in flash back in the day.
-      </Text>
-      <Text>
-        I then got into building tests (AB testing) on websites using jQuery and
-        my world blew up. How much I could do using Javascript.
-      </Text>
-
+      <Row>
+        <Text
+          size={20}
+          css={{
+            padding: '0 8px 0 0',
+          }}
+        >
+          I'm Currently working fulltime as a{' '}
+        </Text>
+        <Text
+          size={20}
+          css={{
+            textGradient: '45deg, $blue500 -20%, $red500 100%',
+          }}
+          weight="bold"
+        >
+          {' '}
+          Senior Software Engineer and Frontend Team Lead
+        </Text>
+        <Text
+          size={20}
+          css={{
+            padding: '0 8px',
+          }}
+        >
+at
+        </Text>
+        <Text
+          size={20}
+          css={{
+            textGradient: '45deg, $blue500 -20%, $red500 100%',
+          }}
+          weight="bold"
+        >
+          Cado Security.
+        </Text>
+      </Row>
+      <Spacer y={0.2} />
+      <Row>
+        <Text size={20}>
+          I've been working in the web world for over 10 years.
+        </Text>
+      </Row>
+      <Spacer y={0.2} />
+      <Row>
+        <Text size={20}>
+          I started out doing Graphic Design and slowly edged into the Coding
+          side after building interactive projects in flash back in the day.
+        </Text>
+      </Row>
+      <Text></Text>
       <Spacer y={3} />
-
       <Tooltip content={"What I'm Doing Now"} placement="bottom">
         <Button type="button" color="error" auto light ripple={true}>
           <Link href={'/about/now'}>
@@ -41,7 +77,6 @@ export default function About() {
           </Link>
         </Button>
       </Tooltip>
-
       <Spacer y={3} />
     </Container>
   );
