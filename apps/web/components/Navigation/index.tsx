@@ -4,20 +4,20 @@ import { useRouter } from 'next/router';
 
 export const Navigation = () => {
   const Links = [
+    // {
+    //   to: '/now',
+    //   name: 'Now',
+    //   tip: 'What I\'m Doing Now',
+    // },
     {
-      to: '/now',
-      name: 'Now',
-      tip: 'What I\'m Doing Now',
+      to: '/about',
+      name: 'About',
+      tip: 'A Little About me',
     },
     {
       to: '/blog',
       name: 'Blog',
       tip: 'My blog Posts',
-    },
-    {
-      to: '/about',
-      name: 'About',
-      tip: 'About me',
     },
 
     // {

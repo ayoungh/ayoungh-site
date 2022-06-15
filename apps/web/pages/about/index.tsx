@@ -1,4 +1,4 @@
-import { Text, Spacer, Container } from '@nextui-org/react';
+import { Text, Spacer, Container, Tooltip, Button, Link } from '@nextui-org/react';
 
 export default function About() {
   return (
@@ -31,6 +31,17 @@ export default function About() {
         I then got into building tests (AB testing) on websites using jQuery and
         my world blew up. How much I could do using Javascript.
       </Text>
+
+      <Spacer y={3} />
+
+      <Tooltip content={"What I'm Doing Now"} placement="bottom">
+        <Button type="button" color="error" auto light ripple={true}>
+          <Link href={'/about/now'}>
+            <a>Now</a>
+          </Link>
+        </Button>
+      </Tooltip>
+
       <Spacer y={3} />
     </Container>
   );
