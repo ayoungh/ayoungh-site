@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faPersonRunning,
   faPersonWalking,
+  faPersonBiking,
+  faHeartPulse,
 } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -33,7 +35,12 @@ export const Activities = () => {
 
   return (
     <div>
-      <Text b>Lastest Activities:</Text>
+      <Text b>
+        <StyledFontAwesome>
+          <FontAwesomeIcon icon={faHeartPulse} />
+        </StyledFontAwesome>
+        Lastest Activities:
+      </Text>
       <Text small>
         {data &&
           data.map(({ type, name, start_date, id }) => (
@@ -41,6 +48,7 @@ export const Activities = () => {
               href={`https://www.strava.com/activities/${id}`}
               target="_blank"
               rel="noreferrer"
+              key={id}
             >
               <StyledFontAwesome>
                 {type.toLowerCase() === 'run' && (
@@ -48,6 +56,9 @@ export const Activities = () => {
                 )}
                 {type.toLowerCase() === 'walk' && (
                   <FontAwesomeIcon icon={faPersonWalking} />
+                )}
+                {type.toLowerCase() === 'ride' && (
+                  <FontAwesomeIcon icon={faPersonBiking} />
                 )}
               </StyledFontAwesome>
               {type} - {name} -{' '}
