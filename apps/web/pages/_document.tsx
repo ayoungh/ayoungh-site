@@ -1,5 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import { CssBaseline } from '@nextui-org/react';
+import React from 'react';
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -22,7 +23,7 @@ class MyDocument extends Document {
                 body {
                     // TODO: Move this away from here!
                     // background-color: black !important;
-                    background-image: url('/funky-lines.png') !important;
+                    background-image: url('/bg.png') !important;
                     min-height: 100vh;
                 `,
             }}
