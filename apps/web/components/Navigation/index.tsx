@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  gray,
-  blue,
-  red,
-  green,
-  grayDark,
-  blueDark,
-  redDark,
-  greenDark,
-} from '@radix-ui/colors';
+import { gray } from '@radix-ui/colors';
 import {
   Spacer,
   Button,
