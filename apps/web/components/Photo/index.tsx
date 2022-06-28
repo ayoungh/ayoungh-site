@@ -1,7 +1,7 @@
-
 import { Image, Text, styled } from '@nextui-org/react';
 import fetcher from '@libs/fetcher';
 import useSWR from 'swr';
+import { whiteA } from '@radix-ui/colors';
 
 type photo = {
   color?: string;
@@ -28,14 +28,22 @@ type photo = {
   };
 };
 
+const StyledPhoto = styled('div', {
+  background: 'white',
+  padding: '8px',
+});
+
 export const Photo = ({ id }: { id: string }) => {
   const { data } = useSWR<photo>(`/api/unsplash/photos/${id}`, fetcher);
   console.log(data);
 
-const SubtleGrey  = styled(Text, { color: '$grey11 !important', padding: '0 4px' });
+  const SubtleGrey = styled(Text, {
+    color: '$grey11 !important',
+    padding: '0 4px',
+  });
 
   return (
-    <div>
+    <StyledPhoto>
       {data && (
         <div>
           {data.description && <Text>{data.description}</Text>}
@@ -57,6 +65,6 @@ const SubtleGrey  = styled(Text, { color: '$grey11 !important', padding: '0 4px'
           </Text>
         </div>
       )}
-    </div>
+    </StyledPhoto>
   );
 };
