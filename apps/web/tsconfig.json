@@ -7,13 +7,22 @@
     "theme/index.js",
     "pages"
   ],
-  "exclude": ["node_modules"],
+  "exclude": [
+    "node_modules"
+  ],
   "compilerOptions": {
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@components/*": ["components/*"],
-      "@layouts/*": ["layoutss/*"],
-      "@libs/*": ["libs/*"]
+      "@components/*": [
+        "components/*"
+      ],
+      "@layouts/*": [
+        "layouts/*"
+      ],
+      "@libs/*": [
+        "libs/*"
+      ]
     }
   }
 }
