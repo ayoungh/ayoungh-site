@@ -8,13 +8,10 @@ import { Footer } from '../components/Footer';
 export const MainLayout = ({ children }) => {
   return (
     <Container fluid>
-      <Row>
-        <Navigation />
-      </Row>
+      <Navigation />
       <Row>{children}</Row>
-      <Row justify="center">
-        <Footer />
-      </Row>
+
+      <Footer />
     </Container>
   );
 };
