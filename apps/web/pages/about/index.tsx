@@ -1,5 +1,4 @@
-import { Photo } from '@components/Photo';
-import fetcher from '@libs/fetcher';
+import { UnsplashPhotos } from '@components/UnsplashPhotos';
 import {
   Text,
   Spacer,
@@ -8,27 +7,9 @@ import {
   Button,
   Link,
   Row,
-  Grid,
 } from '@nextui-org/react';
-import useSWR from 'swr';
-
-type photo = {
-  color?: string;
-  created_at?: string;
-  id?: string;
-  likes: number;
-  urls: {
-    raw: string;
-    full: string;
-    regular: string;
-    small: string;
-    thumb: string;
-    small_s3: string;
-  };
-};
 
 export default function About() {
-  const { data } = useSWR<photo[]>('/api/unsplash/photos', fetcher);
 
   return (
     <Container
@@ -125,15 +106,8 @@ export default function About() {
         <Text size={20}>Some photos that I have uploaded to unsplash</Text>
       </Row>
       <Spacer y={2} />
-      <Grid.Container gap={2}>
-        {data &&
-          data?.length &&
-          data?.map((photo, index) => (
-            <Grid xs={4} key={photo.id} css={{ padding: '4px 0' }}>
-              <Photo id={photo.id} />
-            </Grid>
-          ))}
-      </Grid.Container>
+      <UnsplashPhotos />
+
       <Spacer y={2} />
     </Container>
   );

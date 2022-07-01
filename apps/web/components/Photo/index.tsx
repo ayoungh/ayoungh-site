@@ -34,34 +34,41 @@ const StyledPhoto = styled('div', {
 });
 
 export const Photo = ({ id }: { id: string }) => {
-  const { data } = useSWR<photo>(`/api/unsplash/photos/${id}`, fetcher);
-  console.log(data);
+  const { data: photo } = useSWR<photo>(`/api/unsplash/photos/${id}`, fetcher);
+  console.log(photo);
 
   const SubtleGrey = styled(Text, {
     color: '$grey11 !important',
     padding: '0 4px',
   });
 
+  const StyledTitle = styled('div', {
+    height: '32px',
+    padding: '4px 0 8px 0'
+  })
+
   return (
     <StyledPhoto>
-      {data && (
+      {photo && (
         <div>
-          {data.description && <Text>{data.description}</Text>}
           <Image
             showSkeleton
             width={320}
             height={180}
             maxDelay={10000}
-            src={data.urls.regular}
-            alt={data.description && data.description}
+            src={photo.urls.regular}
+            alt={photo.description && photo.description}
             objectFit="cover"
           />
+          <StyledTitle>
+            {photo.description && <Text>{photo.description}</Text>}
+          </StyledTitle>
           <SubtleGrey small i>
-            f/{data.exif.aperture} - {data.exif.exposure_time} - {data.exif.iso}
+            f/{photo.exif.aperture} - {photo.exif.exposure_time} - {photo.exif.iso}
           </SubtleGrey>
           <Text small i css={{ color: 'gray11' }}>
-            {data.exif.model}
-            {data.exif.name}
+            {photo.exif.model}
+            {photo.exif.name}
           </Text>
         </div>
       )}
