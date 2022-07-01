@@ -7,7 +7,14 @@ import {
   Button,
   Link,
   Row,
+  styled,
 } from '@nextui-org/react';
+import { gray } from '@radix-ui/colors';
+
+const StyledHr = styled('hr', {
+  background: `${gray.gray7}`,
+  margin: '32px 0'
+});
 
 export default function About() {
 
@@ -27,12 +34,13 @@ export default function About() {
       >
         About Me
       </Text>
-      <Spacer y={3} />
+      <Spacer y={2} />
       <Row>
         <Text
           size={20}
           css={{
             padding: '0 8px 0 0',
+            display: 'inline',
           }}
         >
           I'm Currently working fulltime as a
@@ -40,6 +48,7 @@ export default function About() {
             size={20}
             css={{
               textGradient: '45deg, $blue500 -20%, $red500 100%',
+              display: 'inline',
             }}
             weight="bold"
           >
@@ -50,6 +59,7 @@ export default function About() {
             size={20}
             css={{
               padding: '0 8px',
+              display: 'inline',
             }}
           >
             at
@@ -58,6 +68,7 @@ export default function About() {
             size={20}
             css={{
               textGradient: '45deg, $blue500 -20%, $red500 100%',
+              display: 'inline',
             }}
             weight="bold"
           >
@@ -78,8 +89,9 @@ export default function About() {
           side after building interactive projects in flash back in the day.
         </Text>
       </Row>
-      <Text></Text>
-      <Spacer y={3} />
+
+      <StyledHr />
+
       <Tooltip content={"What I'm Doing Now"} placement="bottom">
         <Button type="button" color="error" auto light ripple={true}>
           <Link href={'/about/now'}>
@@ -87,7 +99,8 @@ export default function About() {
           </Link>
         </Button>
       </Tooltip>
-      <Spacer y={3} />
+
+      <StyledHr />
 
       <Row>
         <Text

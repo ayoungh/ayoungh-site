@@ -79,20 +79,11 @@ export default function Home() {
         </Row>
 
         <Spacer y={3} />
-
-        <Row>
-          <Spacer y={1} />
-          <ul>
-            <li>This site is Built with NextJS and hosted on Vercel</li>
-            <li>Using NextUI and Stiches to style the site</li>
-            <li>
-              Using Notion to power the blog pages and soon to power more parts of the site
-            </li>
-          </ul>
-          <Spacer y={1} />
-
-          <Spacer y={1} />
-        </Row>
+          <Text>Welcome to my personal website.</Text>
+          <Text>This website is built using NextJS, hosted on Vercel and pulling blog posts from Notion. </Text>
+          <Text>I am very slowly working on updating this with various bits of information.</Text>
+          <Spacer y={2} />
+          <Text>Check out some more about me on the about page.</Text>
         <Spacer y={1} />
       </Container>
     </>
