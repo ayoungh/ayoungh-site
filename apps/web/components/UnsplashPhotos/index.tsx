@@ -45,7 +45,7 @@ export const UnsplashPhotos = () => {
 
       {stats && (
         <div>
-          {stats.downloads.historical.change} Downloads
+          {stats.downloads.historical.change} Downloads this month
           {/* {stats.downloads.historical.average} Average */}
         </div>
       )}
