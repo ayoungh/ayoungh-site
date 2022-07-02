@@ -1,4 +1,5 @@
 import { UnsplashPhotos } from '@components/UnsplashPhotos';
+import fetcher from '@libs/fetcher';
 import {
   Text,
   Spacer,
@@ -8,8 +9,11 @@ import {
   Link,
   Row,
   styled,
+  Grid,
+  Card,
 } from '@nextui-org/react';
 import { gray } from '@radix-ui/colors';
+import useSWR from 'swr';
 
 const StyledHr = styled('hr', {
   background: `${gray.gray7}`,
@@ -17,6 +21,7 @@ const StyledHr = styled('hr', {
 });
 
 export default function About() {
+  const { data: github } = useSWR<any>('/api/github', fetcher);
 
   return (
     <Container
@@ -90,15 +95,29 @@ export default function About() {
         </Text>
       </Row>
 
-      <StyledHr />
+      <Spacer y={1} />
 
       <Tooltip content={"What I'm Doing Now"} placement="bottom">
-        <Button type="button" color="error" auto light ripple={true}>
+        <Button type="button" color="gradient" auto size="sm" ripple={true}>
           <Link href={'/about/now'}>
             <a>Now</a>
           </Link>
         </Button>
       </Tooltip>
+
+      <StyledHr />
+
+      <Grid.Container gap={2}>
+        <Grid xs={12} sm={2}>
+          <Card variant="bordered">
+            <Card.Body>
+              <Text>
+                {github && <div>Github Repos: {github.public_repos} </div>}
+              </Text>
+            </Card.Body>
+          </Card>
+        </Grid>
+      </Grid.Container>
 
       <StyledHr />
 
