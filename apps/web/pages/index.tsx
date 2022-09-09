@@ -2,9 +2,10 @@
 import React from "react";
 import { Container, Row, Col, Spacer, Loading, Text, Card } from '@nextui-org/react';
 import Head from "next/head";
+import dynamic from "next/dynamic";
 
 
-export default function Home() {
+function Home() {
   return (
     <>
       <Head>
@@ -40,6 +41,7 @@ export default function Home() {
           minHeight: 'calc(100vh - 240px)',
         }}
       >
+        {false && <>
         <Spacer y={1} />
         <Row>
           <Text
@@ -84,8 +86,22 @@ export default function Home() {
           <Text>I am very slowly working on updating this with various bits of information.</Text>
           <Spacer y={2} />
           <Text>Check out some more about me on the about page.</Text>
-        <Spacer y={1} />
+        <Spacer y={1} /></>}
       </Container>
     </>
   );
 }
+
+
+
+// export async function getStaticProps() {
+
+//   return {
+//     props: {
+//     },
+//   }
+// }
+
+export default Home;
+
+// export default dynamic(() => Promise.resolve(Home), {ssr: false});
