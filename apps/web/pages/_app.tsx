@@ -2,6 +2,7 @@ import { NextUIProvider } from '@nextui-org/react';
 import Script from 'next/script';
 import { MainLayout } from '../layouts/main';
 import { theme } from '../theme';
+import { Analytics } from '@vercel/analytics/react';
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -25,6 +26,7 @@ function MyApp({ Component, pageProps }) {
         <Component {...pageProps} />
       </MainLayout>
     </NextUIProvider>
+    <Analytics />
     </>
   );
 }
