@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 
 export const MainLayout = ({ children }) => {
   const router = useRouter();
-  console.log('router: ', router);
   return (
     <Container fluid>
       <Navigation />
