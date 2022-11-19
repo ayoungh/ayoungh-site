@@ -13,8 +13,9 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\""
   },
   "devDependencies": {
-    "@types/node": "^17.0.16",
-    "prettier": "^2.5.1",
+    "@types/node": "^18.11.9",
+    "@types/react": "^18.0.25",
+    "prettier": "^2.7.1",
     "turbo": "latest"
   },
   "packageManager": "yarn@1.22.10"
