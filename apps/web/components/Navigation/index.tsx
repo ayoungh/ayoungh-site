@@ -62,7 +62,6 @@ export const Navigation = () => {
             <Tooltip content="ayoungh.co.uk" placement="bottom">
               <Button type="button" color="error" auto light ripple={true}>
                 <Link href="/">
-                  <a>
                     <Text
                       h1
                       size={25}
@@ -73,7 +72,6 @@ export const Navigation = () => {
                     >
                       Anthony Young
                     </Text>
-                  </a>
                 </Link>
               </Button>
             </Tooltip>
@@ -91,7 +89,7 @@ export const Navigation = () => {
                     shadow={link.to === router.asPath}
                   >
                     <Link href={link.to}>
-                      <a>{link.name}</a>
+                      {link.name}
                     </Link>
                   </Button>
                 </Tooltip>

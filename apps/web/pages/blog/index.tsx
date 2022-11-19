@@ -71,7 +71,7 @@ const Blog = ({ posts }) => {
                           post.properties.Name.title[0].plain_text
                         ).toLowerCase()}`}
                       >
-                        <a>
+
                           {cover && cover.external ? (
                             <Card.Image
                               src={cover.external.url}
@@ -107,7 +107,6 @@ const Blog = ({ posts }) => {
                               </Col>
                             </Row>
                           </Card.Footer>
-                        </a>
                       </Link>
                     </Card.Body>
                   </Card>

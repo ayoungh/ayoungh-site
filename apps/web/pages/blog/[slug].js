@@ -141,7 +141,7 @@ export default function Post({ page, blocks }) {
               <Fragment key={block.id}>{renderBlock(block)}</Fragment>
             ))}
             <Link href="/blog">
-              <a>← Go home</a>
+              ← Go home
             </Link>
           </section>
         </article>

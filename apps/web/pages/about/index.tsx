@@ -100,7 +100,7 @@ export default function About() {
       <Tooltip content={"What I'm Doing Now"} placement="bottom">
         <Button type="button" color="gradient" auto size="sm" ripple={true}>
           <Link href={'/about/now'}>
-            <a>Now</a>
+            Now
           </Link>
         </Button>
       </Tooltip>

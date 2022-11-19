@@ -10,6 +10,7 @@ import {
   faPersonBiking,
   faHeartPulse,
 } from '@fortawesome/free-solid-svg-icons';
+import { Link } from '@components/Link';
 
 type activity = {
   name: string;
@@ -24,10 +25,7 @@ const StyledFontAwesome = styled('div', {
   display: 'inline',
 });
 
-const StyledA = styled('a', {
-  padding: '8px 0',
-  display: 'block',
-});
+
 
 export const Activities = () => {
   const { data } = useSWR<activity[]>('/api/strava/activity', fetcher);
@@ -49,28 +47,26 @@ export const Activities = () => {
       <Text small>
         {data &&
           data.map(({ type, name, start_date, id, distance }) => (
-            <StyledA
+            <Link
               href={`https://www.strava.com/activities/${id}`}
-              target="_blank"
-              rel="noreferrer"
               key={id}
             >
               <StyledFontAwesome>
                 {type.toLowerCase() === 'run' && (
-                  <FontAwesomeIcon icon={faPersonRunning} />
+                  <FontAwesomeIcon icon={faPersonRunning}/>
                 )}
                 {type.toLowerCase() === 'walk' && (
-                  <FontAwesomeIcon icon={faPersonWalking} />
+                  <FontAwesomeIcon icon={faPersonWalking}/>
                 )}
                 {type.toLowerCase() === 'ride' && (
-                  <FontAwesomeIcon icon={faPersonBiking} />
+                  <FontAwesomeIcon icon={faPersonBiking}/>
                 )}
               </StyledFontAwesome>
               {name} - {getMiles(distance)} -{' '}
               {formatDistance(new Date(start_date), new Date(), {
                 addSuffix: true,
               })}
-            </StyledA>
+            </Link>
           ))}
       </Text>
     </div>
