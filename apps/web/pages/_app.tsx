@@ -4,6 +4,9 @@ import { MainLayout } from '../layouts/main';
 import { theme } from '../theme';
 import { Analytics } from '@vercel/analytics/react';
 
+import '@styles/tailwind.css';
+
+
 function MyApp({ Component, pageProps }) {
   return (
     <>
@@ -20,12 +23,12 @@ function MyApp({ Component, pageProps }) {
     
       gtag('config', 'G-6J555H1H5G');
     `}
-  </Script>    
-    <NextUIProvider theme={theme}>
+  </Script>   
+    {/* <NextUIProvider theme={theme}> */}
       <MainLayout>
         <Component {...pageProps} />
       </MainLayout>
-    </NextUIProvider>
+    {/* </NextUIProvider> */}
     <Analytics />
     </>
   );

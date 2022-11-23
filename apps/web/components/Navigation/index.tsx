@@ -9,8 +9,8 @@ import {
   Tooltip,
   styled,
 } from '@nextui-org/react';
-// import { styled } from '@stitches/react';
 import { useRouter } from 'next/router';
+import NavigationMenu from '@components/NavigationMenu';
 
 const StyledNav = styled('nav', {
   borderBottom: `1px solid ${gray.gray7}`,
@@ -55,6 +55,7 @@ export const Navigation = () => {
 
   const router = useRouter();
   return (
+    <>
     <StyledNav>
       {Links && (
         <Grid.Container gap={2}>
@@ -76,7 +77,10 @@ export const Navigation = () => {
               </Button>
             </Tooltip>
           </Grid>
-          {React.Children.toArray(
+          
+          <NavigationMenu />
+
+          {/* {React.Children.toArray(
             Links.map((link) => (
               <Grid>
                 <Tooltip content={link.tip} placement="bottom">
@@ -95,9 +99,10 @@ export const Navigation = () => {
                 </Tooltip>
               </Grid>
             ))
-          )}
+          )} */}
         </Grid.Container>
       )}
     </StyledNav>
+    </>
   );
 };
