@@ -4,13 +4,21 @@ import classNames from 'classnames';
 import { useRouter } from 'next/router';
 // import { CaretDownIcon } from '@radix-ui/react-icons';
 
+type ListItemProps = {
+    className?: string;
+    children?: React.ReactNode;
+    title?: string;
+    href?: string;
+}
+
 const ListItem = React.forwardRef(
-  ({ className, children, title, ...props }, forwardedRef) => (
+  ({ className, children, title, ...props }: ListItemProps, forwardedRef) => (
     <li>
       <NavigationMenu.Link asChild>
         <a
           className={classNames('ListItemLink', className)}
           {...props}
+          // @ts-ignore
           ref={forwardedRef}
         >
           <div className="ListItemHeading">{title}</div>
