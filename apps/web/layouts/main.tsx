@@ -1,17 +1,19 @@
 import React from 'react';
-import Link from 'next/link';
-import { Button } from '@nextui-org/react';
-import { Container, Row, Col } from '@nextui-org/react';
 import { Navigation } from '../components/Navigation';
 import { Footer } from '../components/Footer';
 import { useRouter } from 'next/router';
+import Container from '@components/Container';
 
-export const MainLayout = ({ children }) => {
+type MainLayoutProps = {
+  children: React.ReactNode;
+}
+
+export const MainLayout = ({ children }: MainLayoutProps) => {
   const router = useRouter();
   return (
-    <Container fluid>
+    <Container>
       <Navigation />
-      <Row>{children}</Row>
+      {children}
       {!router.asPath.match(/blog/gi) && <Footer />}
     </Container>
   );

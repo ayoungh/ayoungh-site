@@ -1,8 +1,7 @@
 
 import React from "react";
-import { Container, Row, Col, Spacer, Loading, Text, Card } from '@nextui-org/react';
+import { Container, Row, Col, Spacer, Text, } from '@nextui-org/react';
 import Head from "next/head";
-
 
 export default function Home() {
   return (
@@ -40,6 +39,7 @@ export default function Home() {
           minHeight: 'calc(100vh - 240px)',
         }}
       >
+
         <Spacer y={1} />
         <Row>
           <Text

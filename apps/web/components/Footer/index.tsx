@@ -1,109 +1,117 @@
 import React from 'react';
-import { Text, Link, Row, Col, styled, Spacer } from '@nextui-org/react';
 import Icon from '@components/SocialIcons';
-import { Activities } from '@components/Activities';
-import { Listening } from '@components/Listening';
+import MusicCard from '@components/MusicCard';
+import HealthCard from '@components/HealthCard';
+import classnames from 'classnames';
 
-// @ts-ignore
-const StyledFooter = styled('footer', {
-  width: '100%',
-  padding: '16px 0'
-});
+const Links: {
+  name: string;
+  href: string;
+  bgColor: string;
+  iconColor: string;
+}[] = [
+  {
+    name: 'Instagram',
+    href: 'https://www.instagram.com/ayoungh/',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+  {
+    name: 'Twitter',
+    href: 'https://twitter.com/ayoungh',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+  {
+    name: 'Codepen',
+    href: 'https://codepen.io/ayoungh',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+  {
+    name: 'Dribbble',
+    href: 'https://dribbble.com/ayoungh',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+  {
+    name: 'Github',
+    href: 'https://github.com/ayoungh',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+  {
+    name: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/ayoungh/',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+
+  {
+    name: 'Medium',
+    href: 'https://medium.com/@ayoungh',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+
+  {
+    name: 'Pinterest',
+    href: 'https://www.pinterest.co.uk/ayoungh',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+
+  {
+    name: 'Youtube',
+    href: 'https://www.youtube.com/channel/UC3HauKwKSTTXzw-XLH9rMEQ',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+  {
+    name: 'Spotify',
+    href: 'https://open.spotify.com/user/ayoungh',
+    bgColor: 'bg-pink-600',
+    iconColor: '#de3a3a',
+  },
+];
 
 export const Footer = () => {
   return (
-    <StyledFooter>
-      <Row>
-        <Col>
-          <Row justify="center">
-            <Listening />
-          </Row>
-        </Col>
-        <Col>
-          <Row justify="center">
-            <Activities />
-          </Row>
-        </Col>
-      </Row>
-      <Spacer x={2} />
-      <Row justify="center">
-        <Link
-          href="https://www.instagram.com/ayoungh/"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="instagram" />
-        </Link>
-        <Link
-          href="https://twitter.com/ayoungh"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="twitter" />
-        </Link>
-        <Link
-          href="https://codepen.io/ayoungh"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="codepen" />
-        </Link>
-        <Link
-          href="https://dribbble.com/ayoungh"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="dribbble" />
-        </Link>
-        <Link
-          href="https://github.com/ayoungh"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="github" />
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/ayoungh/"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="linkedin" />
-        </Link>
-        <Link
-          href="https://medium.com/@ayoungh"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="medium" />
-        </Link>
-        <Link
-          href="https://www.pinterest.co.uk/ayoungh"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="pinterest" />
-        </Link>
-        <Link
-          href="https://open.spotify.com/user/ayoungh"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="spotify" />
-        </Link>
-        <Link
-          href="https://www.youtube.com/channel/UC3HauKwKSTTXzw-XLH9rMEQ"
-          target="_blank"
-          css={{ width: '30px' }}
-        >
-          <Icon fgColor="#de3a3a" networkKey="youtube" />
-        </Link>
-      </Row>
-      <Row justify="center" css={{padding: '10px 0'}}>
-        <Text small>
-          &copy; Copyright. Anthony Young - {new Date().getFullYear()} -
-          ayoungh.co.uk
-        </Text>
-      </Row>
-    </StyledFooter>
+    <div className="">
+      <div className="grid grid-cols-1 sm:grid-cols-2">
+        <MusicCard />
+        <HealthCard />
+      </div>
+      <ul role="list" className="my-4 grid grid-cols-1  md:grid-cols-2">
+        {Links.map((link) => (
+          <a href={link.href} target="_blank" className="">
+            <li
+              key={link.name}
+              className="col-span-1 flex rounded-md shadow-sm hover:text-gray-600 hover:bg-gray-50"
+            >
+              <div
+                className={classnames(
+                  // link.bgColor,
+                  'flex-shrink-0 flex items-center justify-center w-16 text-white text-sm font-medium rounded-l-md'
+                )}
+              >
+                <Icon fgColor="#de3a3a" networkKey={link.name.toLowerCase()} />
+              </div>
+              <div className="flex flex-1 items-center justify-between truncate rounded-r-md">
+                <div className="flex-1 truncate px-4 py-2 text-sm">
+                  <span className="font-medium text-gray-900">{link.name}</span>
+                </div>
+              </div>
+            </li>
+          </a>
+        ))}
+      </ul>
+
+      <small className="p-2">
+        {' '}
+        &copy; Copyright. Anthony Young - {new Date().getFullYear()} -
+        ayoungh.co.uk
+      </small>
+    </div>
   );
 };

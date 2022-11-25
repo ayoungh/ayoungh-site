@@ -1,7 +1,5 @@
-import { NextUIProvider } from '@nextui-org/react';
 import Script from 'next/script';
 import { MainLayout } from '../layouts/main';
-import { theme } from '../theme';
 import { Analytics } from '@vercel/analytics/react';
 
 import '@styles/tailwind.css';
@@ -24,11 +22,9 @@ function MyApp({ Component, pageProps }) {
       gtag('config', 'G-6J555H1H5G');
     `}
   </Script>   
-    {/* <NextUIProvider theme={theme}> */}
       <MainLayout>
         <Component {...pageProps} />
       </MainLayout>
-    {/* </NextUIProvider> */}
     <Analytics />
     </>
   );
