@@ -13,19 +13,29 @@ type SpotifyData = {
   title?: string;
 };
 
+type SpotifyTopTrackData = {
+    tracks: {artist: string; songUrl: string; title: string}[];
+  };
+
 const MusicCard = () => {
   const { data } = useSWR<SpotifyData>('/api/spotify/now-playing', fetcher);
-  console.log(data);
+  const { data: topTracks } = useSWR<SpotifyTopTrackData>('/api/spotify/top-tracks', fetcher);
+  const ThreeTopTracks = topTracks?.tracks.slice(0, 3);
+
+  // TODO: Split these out into own components 
 
   if (!data) return null;
 
   return (
-    <div className="bg-white shadow-lg rounded-md rounded-r-none">
+    <div className="bg-white  rounded-md rounded-r-none">
       <div className="flex bg-white border-b">
         <h2 className=" m-6 text-sm font-bold text-gray-900">Listening</h2>
       </div>
 
-      <Link href={data.songUrl}>
+        {!data.isPlaying && <div className="flex flex-1 flex-col p-8 relative hover:bg-gray-100">Not currently playing.</div>}
+
+
+        {data.isPlaying && <Link href={data.songUrl}>
         <div className="flex flex-1 flex-col p-8 relative hover:bg-gray-100">
           <Image
             className="mx-auto h-32 w-32 flex-shrink-0 rounded-sm shadow-lg"
@@ -48,7 +58,34 @@ const MusicCard = () => {
             </dd>
           </dl>
         </div>
-      </Link>
+      </Link>}
+
+       <div>
+       <div className="flex bg-white border-b border-t">
+        <h3 className=" m-6 text-sm font-bold text-gray-900">Top Tracks</h3>
+      </div>
+
+      {ThreeTopTracks &&
+          ThreeTopTracks.map(({ artist, title, songUrl }, inx) => (
+            <Link href={songUrl} key={inx}>
+              <div className="flex flex-1 flex-col p-8 relative hover:bg-gray-100 border-b">
+                <h3 className="mt-6 text-sm font-medium text-gray-900">
+                  {artist}
+                </h3>
+                <dl className="mt-1 flex flex-grow flex-col justify-between">
+                  <dt className="sr-only">Song Title</dt>
+                  <dd className="text-sm text-gray-500">{title}</dd>
+                  <dt className="sr-only">Song Artist</dt>
+                  <dd className="text-sm text-gray-500">
+                    {artist}
+                  </dd>
+        
+                </dl>
+              </div>
+            </Link>
+          ))}
+    </div> 
+
     </div>
   );
 };

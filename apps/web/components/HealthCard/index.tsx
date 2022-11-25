@@ -25,7 +25,7 @@ const HealthCard = () => {
   if (!data) return null;
 
   return (
-    <div className="shadow-lg rounded-md rounded-l-none">
+    <div className="rounded-md rounded-l-none">
       <div className="flex bg-white border-b">
         <h2 className=" m-6 text-sm font-bold text-gray-900">Health</h2>
       </div>
